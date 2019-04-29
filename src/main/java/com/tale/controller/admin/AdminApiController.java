@@ -87,7 +87,9 @@ public class AdminApiController extends BaseController {
 
     @PostRoute("article/new")
     public RestResponse newArticle(@BodyParam Contents contents) {
+        System.out.println("[debug] 测试1");
         CommonValidator.valid(contents);
+        System.out.println("[debug] 测试2");
 
         Users users = this.user();
         contents.setType(Types.ARTICLE);
