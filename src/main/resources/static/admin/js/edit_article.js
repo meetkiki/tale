@@ -192,9 +192,9 @@ var vm = new Vue({
                 // FIXME 在输入一些特殊字符提交时会报错，因此对于markdown的内容进行base64编码
                 // 这个错误应该是blade框架的错误
                 if($vm.article.fmtType === 'markdown'){
-                    content = BASE64.encode(content);
+                    content = new BASE64().encode(content);
                     // FIXME 这里需要将base64编码多出的=符号替换，否则提交仍然报错
-                    content.replace(/=/g, "-");
+                    content = content.replace(/=/g, "-");
                 }
 
                 $vm.article.content = content;
