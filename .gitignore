@@ -17,3 +17,6 @@ logs/
 tale.db
 pack.sh
 .factorypath
+
+# other test
+/demo_test/

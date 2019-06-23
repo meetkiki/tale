@@ -87,9 +87,9 @@ public class AdminApiController extends BaseController {
 
     @PostRoute("article/new")
     public RestResponse newArticle(@BodyParam Contents contents) {
-        System.out.println("[debug] 测试1");
         CommonValidator.valid(contents);
-        System.out.println("[debug] 测试2");
+
+        // FIXME 对于markdown，前端做了base64编码，且替换了=符号为-，所以这里需要将-恢复成=
 
         Users users = this.user();
         contents.setType(Types.ARTICLE);

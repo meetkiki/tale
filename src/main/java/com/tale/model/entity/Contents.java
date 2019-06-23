@@ -3,6 +3,7 @@ package com.tale.model.entity;
 import io.github.biezhi.anima.Model;
 import io.github.biezhi.anima.annotation.Ignore;
 import io.github.biezhi.anima.annotation.Table;
+import io.netty.handler.codec.base64.Base64;
 import lombok.Data;
 
 /**
@@ -106,4 +107,8 @@ public class Contents extends Model {
 
     @Ignore
     private String url;
+
+    public void markdownTransfer(){
+
+    }
 }
