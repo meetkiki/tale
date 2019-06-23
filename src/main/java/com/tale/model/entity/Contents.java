@@ -3,8 +3,10 @@ package com.tale.model.entity;
 import io.github.biezhi.anima.Model;
 import io.github.biezhi.anima.annotation.Ignore;
 import io.github.biezhi.anima.annotation.Table;
-import io.netty.handler.codec.base64.Base64;
 import lombok.Data;
+import org.apache.commons.codec.binary.Base64;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * 文章
@@ -14,6 +16,7 @@ import lombok.Data;
 @Data
 @Table(name = "t_contents", pk = "cid")
 public class Contents extends Model {
+
 
     /**
      * 文章表主键
@@ -108,7 +111,15 @@ public class Contents extends Model {
     @Ignore
     private String url;
 
-    public void markdownTransfer(){
+    /**
+     * FIXME 将编码后的内容转换成正常内容，这种方式不是很好，需要进一步完善
+     */
+    public void markdownTransfer() throws UnsupportedEncodingException {
+        // 将=替换回来
+        this.content = content.replaceAll("-", "=");
+        Base64 base64 = new Base64();
+        // 解码
+        this.content = new String(base64.decode(content), "UTF-8");
 
     }
 }

@@ -1,13 +1,23 @@
 package com.tale.test.java;
 
-import java.nio.charset.Charset;
-import java.util.Base64;
+import org.apache.commons.codec.binary.Base64;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException {
         String a = "JTIzJTIwYSV1NEVDQiV1N0VDRCU1Q25waXAldTU3MjgldTVCODkldTg4QzUldTUzMDUldTY1RjYldTUzRUYldTRFRTUldTY2RjQldTYzNjIldTZFOTAldUZGMEMldThGRDkldTY4MzcldTUzRUYldTRFRTUldTY2RjQldTVGRUIldTc2ODQldTRFMEIldThGN0QldTU0OEMldTVCODkldTg4QzUlNUNuJTVDbiUyMyUyMCV1NkMzOCV1NEU0NSV1NEZFRSV1NjUzOSV1NjVCOSV1NUYwRiU1Q24xLiUyMCV1NTcyOCV1NzUyOCV1NjIzNyV1NzZFRSV1NUY1NSUyOFdpbmRvd3MldTRFMkQldTRFMDAldTgyMkMldTRFM0FDJTNBJTVDJTVDVXNlcnMlNUMlNUN4eHgldUZGMENNYWMldTU0OENMaW51eCV1NEUyRCV1NEUwMCV1ODIyQyV1NEUzQS9ob21lL3h4eCUyOSV1NTIxQiV1NUVGQSV1NjU4NyV1NEVGNiV1NTkzOS5waXAlNUNuMi4lMjAldTU3MjgucGlwJXU2NTg3JXU0RUY2JXU1OTM5JXU0RTJEJXU1MjFCJXU1RUZBJXU5MTREJXU3RjZFJXU2NTg3JXU0RUY2cGlwLmluaSUyOFdpbmRvd3MlMjkldTYyMTZwaXAuY29uZiUyOE1hYyV1NTQ4Q0xpbnV4JTI5JTVDbiU1Q24lMjMlMjMlMjBwaXAuaW5pJXU2MjE2JXU4MDA1cGlwLmNvbmYldTY1ODcldTRFRjYldTUxODUldTVCQjklNUNuJTIzJTIzJTIzJTIzJTIwJXU2RTA1JXU1MzRFJXU1OTI3JXU1QjY2JXU2RTkwJTVDbiU2MCU2MCU2MCU1Q24lNUJnbG9iYWwlNUQlNUNuaW5kZXgtdXJsJTIwJTNEJTIwaHR0cHMlM0EvL3B5cGkudHVuYS50c2luZ2h1YS5lZHUuY24vc2ltcGxlJTVDbiU2MCU2MCU2MCU1Q24lMjMlMjMlMjMlMjMlMjAldTk2M0YldTkxQ0MldTRFOTElNUNuJTYwJTYwJTYwJTVDbiU1Qmdsb2JhbCU1RCU1Q25pbmRleC11cmwlMjAlM0QlMjBodHRwJTNBLy9taXJyb3JzLmFsaXl1bi5jb20vcHlwaS9zaW1wbGUvJTIwJTVDbiU2MCU2MCU2MCU1Q24lNUNuJTIzJTIzJTIzJTIzJTIwJXU0RTJEJXU1NkZEJXU3OUQxJXU2MjgwJXU1OTI3JXU1QjY2JTVDbiU2MCU2MCU2MCU1Q24lNUJnbG9iYWwlNUQlNUNuaW5kZXgtdXJsJTIwJTNEJTIwaHR0cHMlM0EvL3B5cGkubWlycm9ycy51c3RjLmVkdS5jbi9zaW1wbGUvJTIwJTVDbiU2MCU2MCU2MCU1Q24lNUNuJTIzJTIzJTIzJTIzJTIwJXU4QzQ2JXU3NEUzJTVDbiU2MCU2MCU2MCU1Q24lNUJnbG9iYWwlNUQlNUNuaW5kZXgtdXJsJTIwJTNEJTIwaHR0cCUzQS8vcHlwaS5kb3ViYW4uY29tL3NpbXBsZS8lMjAlNUNuJTYwJTYwJTYwJTVDbiUyMyUyMyUyMyUyMyUyMCV1NEUyRCV1NTZGRCV1NzlEMSV1NUI2NiV1NjI4MCV1NjcyRiV1NTkyNyV1NUI2NiU1Q24lNjAlNjAlNjAlNUNuJTVCZ2xvYmFsJTVEJTVDbmluZGV4LXVybCUyMCUzRCUyMGh0dHAlM0EvL3B5cGkubWlycm9ycy51c3RjLmVkdS5jbi9zaW1wbGUvJTVDbiU2MCU2MCU2MCU1Q24lNUNuJTIzJTIwJXU0RTM0JXU2NUY2JXU0RjdGJXU3NTI4JXU2NUI5JXU1RjBGJTVDbiU2MCU2MCU2MCU1Q24lMjBwaXAlMjBpbnN0YWxsJTIwc2NyYXB5JTIwLWklMjBodHRwcyUzQS8vcHlwaS50dW5hLnRzaW5naHVhLmVkdS5jbi9zaW1wbGUlNUNuJTYwJTYwJTYw";
-        Base64.Decoder decoder = Base64.getDecoder();
-        byte[] b = decoder.decode(a.getBytes());
-        System.out.println(new String(b, Charset.forName("gbk ")));
+        String d = "# 介绍 我是你好";
+        Base64 base64 = new Base64();
+        String d1 = base64.encodeToString(d.getBytes("UTF-8"));
+        System.out.println(d1);
+        String d2 = "5oiR5piv5L2g5aW9";
+        System.out.println(d1.equals(d2));
+
+        String b = new String(base64.decode(d2), "UTF-8");
+        System.out.println(b);
+        String c = URLDecoder.decode(b, "GB2312");
+        System.out.println(c);
     }
 }
