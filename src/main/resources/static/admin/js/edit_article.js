@@ -189,6 +189,14 @@ var vm = new Vue({
             var $vm = this;
             var content = $vm.article.fmtType === 'markdown' ? mditor.value : htmlEditor.summernote('code');
             if ($vm.article.title !== '' && content !== '') {
+                // FIXME 在输入一些特殊字符提交时会报错，因此对于markdown的内容进行base64编码
+                // 这个错误应该是blade框架的错误
+                if($vm.article.fmtType === 'markdown'){
+                    content = new BASE64().encode(content);
+                    // FIXME 这里需要将base64编码多出的=符号替换，否则提交仍然报错
+                    content = content.replace(/=/g, "-");
+                }
+
                 $vm.article.content = content;
                 $vm.article.categories = $vm.article.selected.join(',');
                 var params = tale.copy($vm.article);

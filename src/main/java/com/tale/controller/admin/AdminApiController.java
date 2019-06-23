@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -87,9 +88,16 @@ public class AdminApiController extends BaseController {
 
     @PostRoute("article/new")
     public RestResponse newArticle(@BodyParam Contents contents) {
-        System.out.println("[debug] 测试1");
         CommonValidator.valid(contents);
-        System.out.println("[debug] 测试2");
+
+        // FIXME 将前端的编码转换，希望以后有时间可以找到更优雅的方式
+        try {
+            contents.markdownTransfer();
+        } catch (UnsupportedEncodingException e) {
+            log.error("解码失败:{}", contents.getContent());
+            e.printStackTrace();
+            return RestResponse.fail("解码失败");
+        }
 
         Users users = this.user();
         contents.setType(Types.ARTICLE);
@@ -119,6 +127,16 @@ public class AdminApiController extends BaseController {
             return RestResponse.fail("缺少参数，请重试");
         }
         CommonValidator.valid(contents);
+
+        // FIXME 将前端的编码转换，希望以后有时间可以找到更优雅的方式
+        try {
+            contents.markdownTransfer();
+        } catch (UnsupportedEncodingException e) {
+            log.error("解码失败:{}", contents.getContent());
+            e.printStackTrace();
+            return RestResponse.fail("解码失败");
+        }
+
         Integer cid = contents.getCid();
         contentsService.updateArticle(contents);
         return RestResponse.ok(cid);
