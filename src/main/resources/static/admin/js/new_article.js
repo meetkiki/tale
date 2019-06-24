@@ -28,7 +28,7 @@ var vm = new Vue({
         categories: [],
         isLoading: true
     },
-    beforeCreate: function(){
+    beforeCreate: function () {
         vueLoding = this.$loading.show();
     },
     mounted: function () {
@@ -42,9 +42,15 @@ var vm = new Vue({
             tale.get({
                 url: '/admin/api/categories',
                 success: function (data) {
-                    for(item in data.payload){
+                    for (item in data.payload) {
                         $vm.categories.push(data.payload[item].name);
                     }
+
+                    // 增加mathjax渲染
+                    mditor.editor.addListener("changed", function () {
+                        var math = document.getElementsByClassName('viewer')
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
+                    });
                 },
                 error: function (error) {
                     console.log(error);
@@ -58,7 +64,7 @@ var vm = new Vue({
             if ($vm.article.title !== '' && content !== '') {
                 // FIXME 在输入一些特殊字符提交时会报错，因此对于markdown的内容进行base64编码
                 // 这个错误应该是blade框架的错误
-                if($vm.article.fmtType === 'markdown'){
+                if ($vm.article.fmtType === 'markdown') {
                     content = new BASE64().encode(content);
                     // FIXME 这里需要将base64编码多出的=符号替换，否则提交仍然报错
                     content = content.replace(/=/g, "-");
@@ -135,7 +141,7 @@ var vm = new Vue({
                 return;
             }
             clearInterval(refreshIntervalId);
-            $vm.article.status  = status;
+            $vm.article.status = status;
 
             $vm.autoSave(function () {
                 tale.alertOk({
@@ -162,6 +168,8 @@ $(document).ready(function () {
     });
 
     mditor = window.mditor = Mditor.fromTextarea(document.getElementById('md-editor'));
+
+
     // 富文本编辑器
     htmlEditor = $('.summernote').summernote({
         lang: 'zh-CN',
@@ -254,7 +262,7 @@ $(document).ready(function () {
             $('#dropzone-container').removeClass('hide');
             $('#dropzone-container').show();
             var thumbImage = $("#dropzone").css("backgroundImage");
-            if(thumbImage && thumbImage.indexOf('url') !== -1){
+            if (thumbImage && thumbImage.indexOf('url') !== -1) {
                 thumbImage = thumbImage.split("(")[1].split(")")[0];
                 vm.article.thumbImg = thumbImage.substring(1, thumbImage.length - 1);
             }
