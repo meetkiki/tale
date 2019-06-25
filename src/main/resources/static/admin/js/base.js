@@ -251,3 +251,4 @@ Vue.prototype.randomColor = function () {
     console.log('color..');
     return colors_[Math.floor(Math.random() * colors_.length)];
 };
+
