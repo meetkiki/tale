@@ -42,6 +42,15 @@ var vm = new Vue({
         });
 
         mditor = window.mditor = Mditor.fromTextarea(document.getElementById('md-editor'));
+        // 增加mathjax渲染
+        mditor.on('ready', function () {
+            mditor.editor.addListener("changed", function () {
+                var math = document.getElementsByClassName('viewer')
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
+            });
+
+        });
+
         // 富文本编辑器
         htmlEditor = $('.summernote').summernote({
             lang: 'zh-CN',

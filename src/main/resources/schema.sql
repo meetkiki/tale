@@ -86,7 +86,7 @@ INSERT INTO t_options (name, value, description) VALUES ('social_github', '', NU
 INSERT INTO t_options (name, value, description) VALUES ('social_twitter', '', NULL);
 INSERT INTO t_options (name, value, description) VALUES ('allow_install', 'false', '是否允许重新安装博客');
 INSERT INTO t_options (name, value, description) VALUES ('allow_comment_audit', 'true', '评论需要审核');
-INSERT INTO t_options (name, value, description) VALUES ('site_theme', 'default', NULL);
+INSERT INTO t_options (name, value, description) VALUES ('site_theme', 'theme_ifish', NULL);
 INSERT INTO t_options (name, value, description) VALUES ('site_keywords', '博客系统,Blade框架,Tale', NULL);
 INSERT INTO t_options (name, value, description) VALUES ('site_description', '博客系统,Blade框架,Tale', NULL);
 
