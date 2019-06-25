@@ -45,12 +45,6 @@ var vm = new Vue({
                     for (item in data.payload) {
                         $vm.categories.push(data.payload[item].name);
                     }
-
-                    // 增加mathjax渲染
-                    mditor.editor.addListener("changed", function () {
-                        var math = document.getElementsByClassName('viewer')
-                        MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
-                    });
                 },
                 error: function (error) {
                     console.log(error);
@@ -168,6 +162,14 @@ $(document).ready(function () {
     });
 
     mditor = window.mditor = Mditor.fromTextarea(document.getElementById('md-editor'));
+    // 增加mathjax渲染
+    mditor.on('ready', function () {
+        mditor.editor.addListener("changed", function () {
+            var math = document.getElementsByClassName('viewer')
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, math]);
+        });
+
+    });
 
 
     // 富文本编辑器
