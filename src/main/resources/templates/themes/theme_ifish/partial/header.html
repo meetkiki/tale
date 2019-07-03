@@ -45,8 +45,8 @@
                     #tag social("twitter")
                     <a class="social twitter" target="blank" href="${social_link('twitter')}"><i class="iconfont icon-twitter"></i></a>
                     #end
-                    <form id="search" method="post" action="/" role="search">
-                        <input type="text" class="input" name="s" required="true" placeholder="...Search">
+                    <form id="search" method="get" action="/search" role="search">
+                        <input type="text" class="input" name="s" required="true" placeholder="请输入关键词后按回车搜索">
                     </form>
                     <!-- 知乎暂时无法通过链接直接访问，因此暂时注释掉
                     #tag social("zhihu")
