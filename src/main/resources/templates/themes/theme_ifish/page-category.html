@@ -27,8 +27,8 @@
         </article>
         #end
         <nav class="page-navi">
-            #call pageLink('<i class="icon icon-left"></i> 上一页','prev')
-            #call pageLink('<i class="icon icon-right"></i> 下一页','next')
+            #include('./partial/pagination.html', {articles: articles(12), pos: 'prev', text: '<i class="icon icon-left"></i> 上一页'})
+            #include('./partial/pagination.html', {articles: articles(12), pos: 'next', text: '<i class="icon icon-right"></i> 下一页'})
         </nav>
 
         #end
